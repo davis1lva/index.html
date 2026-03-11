@@ -3,13 +3,14 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feliz Aniversário</title>
 
 <style>
 
 body{
 margin:0;
-height:100vh;
+min-height:100vh;
 background: linear-gradient(135deg,#ff758c,#ff7eb3);
 font-family: Arial;
 display:flex;
@@ -18,15 +19,15 @@ justify-content:center;
 align-items:center;
 text-align:center;
 color:white;
-overflow:hidden;
+overflow-x:hidden;
 }
 
 h1{
-font-size:50px;
+font-size:40px;
 }
 
 #text{
-font-size:24px;
+font-size:22px;
 margin-top:20px;
 min-height:40px;
 }
@@ -50,91 +51,26 @@ flex-wrap:wrap;
 justify-content:center;
 }
 
-/* CSS NOVO DAS FOTOS */
+/* fotos */
 
 .gallery img{
-width:150px;
-height:150px;
+width:180px;
+height:180px;
 border-radius:15px;
 object-fit:cover;
 box-shadow:0 5px 15px rgba(0,0,0,0.3);
 transition:0.3s;
+cursor:pointer;
 }
 
 .gallery img:hover{
-transform:scale(1.1);
+transform:scale(1.08);
 }
 
-.firework{
-position:absolute;
-font-size:30px;
-animation:explode 1s ease-out forwards;
-}
+/* celular */
 
-@keyframes explode{
-0%{transform:scale(0)}
-100%{transform:scale(2);opacity:0}
-}
+@media (max-width:600px){
 
-</style>
-
-</head>
-
-<body>
-
-<h1>🎉 Feliz Aniversário 🎉</h1>
-
-<div id="text"></div>
-
-<button onclick="surpresa()">Clique para ver a surpresa</button>
-
-<div class="gallery">
-
-<img src="foto0.jpg">
-<img src="foto1.jpg">
-<img src="foto2.jpg">
-<img src="foto3.jpg">
-<img src="foto4.jpg">
-<img src="foto5.jpg">
-
-</div>
-
-<script>
-
-let msg="Feliz aniversário... Sua lindaaa, vc merece tudo de maravilhoso ❤️";
-let i=0;
-
-function digitar(){
-if(i<msg.length){
-document.getElementById("text").innerHTML+=msg.charAt(i);
-i++;
-setTimeout(digitar,50);
-}
-}
-
-digitar();
-
-function surpresa(){
-
-alert("Você é incrível e eu não me canso de dizer isso, Te Amo sua chata ❤️");
-
-for(let i=0;i<30;i++){
-let fire=document.createElement("div");
-fire.classList.add("firework");
-fire.innerHTML="🎆";
-fire.style.left=Math.random()*100+"vw";
-fire.style.top=Math.random()*100+"vh";
-document.body.appendChild(fire);
-
-setTimeout(()=>{
-fire.remove();
-},1000);
-}
-
-}
-
-</script>
-
-</body>
-</html>
-
+.gallery img{
+width:240px;
+hei
