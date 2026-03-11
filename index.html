@@ -8,14 +8,162 @@
 
 <style>
 
-/* Fundo com uma das fotos já existentes */
+/* Corpo do site */
 body{
 margin:0;
 min-height:100vh;
-background: url('foto0.jpg') no-repeat center center fixed;
-background-size: cover;
+background: linear-gradient(135deg,#ff758c,#ff7eb3);
 font-family: Arial;
 display:flex;
 flex-direction:column;
 align-items:center;
-te
+text-align:center;
+color:white;
+overflow-x:hidden;
+}
+
+/* Título e texto */
+h1{
+margin-top:40px;
+font-size:40px;
+}
+
+#text{
+font-size:22px;
+margin-top:20px;
+}
+
+/* Botão surpresa */
+button{
+margin-top:25px;
+padding:12px 25px;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+background:white;
+color:#ff4d6d;
+transition:0.2s;
+}
+
+/* efeito pulso no toque */
+button:active{
+transform:scale(1.05);
+}
+
+/* Galeria */
+.gallery{
+margin-top:30px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+/* Fotos com efeito no hover / toque */
+.gallery img{
+width:180px;
+height:180px;
+border-radius:15px;
+object-fit:cover;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+cursor:pointer;
+transition:0.3s transform, 0.3s box-shadow;
+}
+
+/* Efeito hover no desktop */
+.gallery img:hover{
+transform: scale(1.08) translateY(-5px);
+box-shadow:0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Fotos maiores no celular */
+@media (max-width:600px){
+.gallery img{
+width:240px;
+height:240px;
+}
+}
+
+/* Lightbox para abrir a foto grande */
+#lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+#lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.7);
+transition:0.3s transform;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🎉 Feliz Aniversário 🎉</h1>
+
+<div id="text">Feliz aniversário... Sua lindaaa ❤️</div>
+
+<button id="btnSurpresa">Clique para ver a surpresa</button>
+
+<div class="gallery">
+<img src="foto0.jpg">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+<img src="foto4.jpg">
+<img src="foto5.jpg">
+</div>
+
+<!-- Lightbox -->
+
+<div id="lightbox" onclick="this.style.display='none'">
+<img id="imgGrande">
+</div>
+
+<script>
+/* Abrir foto grande */
+document.querySelectorAll(".gallery img").forEach(img=>{
+  img.addEventListener("click",()=>{
+    const lightbox = document.getElementById("lightbox");
+    lightbox.style.display="flex";
+    const imgGrande = document.getElementById("imgGrande");
+    imgGrande.src = img.src;
+    imgGrande.style.transform="scale(0.8)";
+    setTimeout(()=> imgGrande.style.transform="scale(1)", 10);
+  });
+});
+
+/* Botão surpresa */
+document.getElementById("btnSurpresa").addEventListener("click", function(){
+  alert("Você é incrível e eu não me canso de dizer isso, Te Amo ❤️");
+  // criar fogos simples
+  for(let i=0;i<30;i++){
+    let fire = document.createElement("div");
+    fire.classList.add("firework");
+    fire.innerHTML = "🎆";
+    fire.style.position="absolute";
+    fire.style.left = Math.random()*100 + "vw";
+    fire.style.top = Math.random()*100 + "vh";
+    fire.style.fontSize = (Math.random()*20 + 20)+"px";
+    document.body.appendChild(fire);
+    setTimeout(()=> fire.remove(),1000);
+  }
+});
+</script>
+
+</body>
+</html>
